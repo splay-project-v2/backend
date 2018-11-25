@@ -14,8 +14,8 @@ RUN gem install json -v 2.1.0
 RUN gem install openssl mysql2 sequel
 
 # The context is the parent directory
-ADD cli_server/*.rb ./
+ADD backend/*.rb ./
 ADD controller/lib ./lib
-ADD cli_server/deploy_cli_server.sh ./
+ADD backend/deploy_cli_server.sh ./
 
 CMD ["./deploy_cli_server.sh"]
