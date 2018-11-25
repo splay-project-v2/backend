@@ -33,7 +33,6 @@ def json_result(ret)
 end
 
 class ChangePasswd < WEBrick::HTTPServlet::AbstractServlet
-
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = change_passwd(
@@ -46,6 +45,7 @@ class ChangePasswd < WEBrick::HTTPServlet::AbstractServlet
     response.body = body
   end
 
+  # TODO : Users management route
   #function change_passwd: triggered when a "CHANGE PASSWORD" message is received, modifies the password of a user
   def change_passwd(username, hashed_currentpassword, hashed_newpassword)
     #initializes the return variable
@@ -64,7 +64,7 @@ end
 
 class GetLog < WEBrick::HTTPServlet::AbstractServlet
   @@log_dir = SplayControllerConfig::LogDir
-
+  # TODO : Logs management route
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = get_log(
@@ -123,7 +123,7 @@ class GetLog < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class GetJobCode < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Jobs management route (SHOW)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = get_job_code(
@@ -185,7 +185,7 @@ class GetJobCode < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class KillJob < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Jobs management route (DESTROY)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = kill_job(
@@ -237,7 +237,7 @@ class KillJob < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class SubmitJob < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Jobs management route (CREATE)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     p req
@@ -408,7 +408,7 @@ class GetJobDetails < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class ListJobs < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Jobs management route (INDEX)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = list_jobs(
@@ -459,7 +459,7 @@ class ListJobs < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class ListSplayds < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Splayds management route (INDEX)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = list_splayds(
@@ -496,7 +496,6 @@ class ListSplayds < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class StartSession < WEBrick::HTTPServlet::AbstractServlet
-
   def do_POST(request, response)
     req = JSON.parse(request.body)
     $logger.debug request
@@ -536,7 +535,7 @@ class StartSession < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class NewUser < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Users management route (CREATE)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = new_user(
@@ -578,7 +577,7 @@ class NewUser < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class ListUsers < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Users management route (INDEX)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = list_users(
@@ -618,7 +617,7 @@ class ListUsers < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class RemoveUser < WEBrick::HTTPServlet::AbstractServlet
-
+  # TODO : Users management route(DESTROY)
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = remove_user(
