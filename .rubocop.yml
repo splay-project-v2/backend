@@ -1,0 +1,20 @@
+AllCops:
+  Exclude:
+    - bin/*
+    - config/**/*
+    - db/*
+    - test/test_helper.rb
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - app/mailers/application_mailer.rb
+    - app/models/application_record.rb
+    - app/jobs/application_job.rb
+    - app/controllers/application_controller.rb
+    - app/channels/application_cable/connection.rb
+    - app/channels/application_cable/channel.rb
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - cli_server.rb
+Rails:
+  Enabled: true
