@@ -26,12 +26,18 @@ unless formatters.empty?
   SimpleCov.formatters = formatters
 end
 
-SimpleCov.start do
+SimpleCov.start('rails') do
   # Don't get coverage on the test cases themselves.
   add_filter '/spec/'
   add_filter '/test/'
   # Codecov doesn't automatically ignore vendored files.
   add_filter '/vendor/'
+  add_filter 'app/channels/application_cable/channel.rb'
+  add_filter 'app/channels/application_cable/connection.rb'
+  add_filter 'app/controllers/application_controller.rb'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/models/application_record.r'
 end
 
 # Main config
