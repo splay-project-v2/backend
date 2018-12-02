@@ -16,7 +16,19 @@
 
 # Enable CodeCov
 require 'simplecov'
-SimpleCov.start
+
+if ENV['CODECOV_TOKEN']
+  require 'codecov'
+  formatters << SimpleCov::Formatter::Codecov
+end
+
+SimpleCov.start do
+  # Don't get coverage on the test cases themselves.
+  add_filter '/spec/'
+  add_filter '/test/'
+  # Codecov doesn't automatically ignore vendored files.
+  add_filter '/vendor/'
+end
 
 # Main config
 RSpec.configure do |config|

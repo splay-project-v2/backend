@@ -5,3 +5,6 @@ rvm:
 script:
   - bundle exec rspec
   - bundle exec rubocop -P
+
+env:
+  - CODECOV_TOKEN="55c76f18-4868-483e-a095-87a17e22b349"
