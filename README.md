@@ -18,7 +18,7 @@ These are the tasks performed and to be performed on Backend
 - [ ] API entries for the listed routes in `api.raml`
 - [ ] JSON API is tested
 
-# README
+## README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
