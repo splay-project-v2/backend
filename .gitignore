@@ -28,3 +28,6 @@
 
 # Ignore Rubymine .idea
 .idea
+
+# Ignore Coverage Stats
+coverage
