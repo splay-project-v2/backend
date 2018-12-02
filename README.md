@@ -14,7 +14,7 @@ These are the tasks performed and to be performed on Backend
 - [ ] DB definition and versioning belongs to Backend
 - [x] Transform Backend in a small Rails API app
 - [x] Immediately setup Rubocop and Rspec
-- [ ] CircleCI or TravisCI integration
+- [x] CircleCI or TravisCI integration
 - [ ] Recreate DB Schema using migrations
 - [ ] Tests on models 
 - [ ] API entries for the listed routes in `api.raml`
