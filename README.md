@@ -10,8 +10,8 @@ application.
 These are the tasks performed and to be performed on Backend
 
 - [ ] DB definition and versioning belongs to Backend
-- [ ] Transform Backend in a small Rails API app
-- [ ] Immediately setup Rubocop and Rspec
+- [x] Transform Backend in a small Rails API app
+- [x] Immediately setup Rubocop and Rspec
 - [ ] CircleCI or TravisCI integration
 - [ ] Recreate DB Schema using migrations
 - [ ] Tests on models 
