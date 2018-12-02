@@ -17,9 +17,13 @@
 # Enable CodeCov
 require 'simplecov'
 
+formatters = []
 if ENV['CODECOV_TOKEN']
   require 'codecov'
   formatters << SimpleCov::Formatter::Codecov
+end
+unless formatters.empty?
+  SimpleCov.formatters = formatters
 end
 
 SimpleCov.start do
