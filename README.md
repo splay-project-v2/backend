@@ -16,7 +16,7 @@ These are the tasks performed and to be performed on Backend
 - [x] Immediately setup Rubocop and Rspec
 - [x] CircleCI or TravisCI integration
 - [ ] Recreate DB Schema using migrations
-- [ ] Tests on models 
+- [ ] Tests on models
 - [ ] API entries for the listed routes in `api.raml`
 - [ ] JSON API is tested
 
