@@ -26,3 +26,7 @@ Style/FrozenStringLiteralComment:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Exclude:
+    - spec/models/**/*
