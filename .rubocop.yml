@@ -27,6 +27,19 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+Layout/IndentHash:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - spec/api/**/*
+
 Metrics/LineLength:
   Exclude:
     - spec/models/**/*
+    - spec/api/**/*
