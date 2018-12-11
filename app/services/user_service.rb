@@ -6,7 +6,7 @@ class UserService
     @password_confirmation = params['data']['attributes']['password_confirmation']
   end
 
-  def call
+  def create_user!
     User.create!(email: @email, login: @login, password: @password, password_confirmation: @password_confirmation)
   end
 end
