@@ -5,7 +5,7 @@ RSpec.describe 'User registration', type: :request do
     it 'returns a JWT' do
       post(
         '/api/v1/users',
-        params: request_body('alice@gmail.com', 'alice', 'password', 'passwooords'),
+        params: request_body('alice@gmail.com', 'alice', 'password', 'password'),
         headers: request_headers
       )
       expect(response.status).to eq 200
@@ -29,7 +29,7 @@ RSpec.describe 'User registration', type: :request do
     it 'returns a 422 unprocessable entity' do
       post(
         '/api/v1/users',
-        params: request_body('alice@gmail.com', 'alice', 'password', 'passwooords'),
+        params: request_body('alice@gmail', 'alice', 'password', 'password'),
         headers: request_headers
       )
       expect(response.status).to eq 422
