@@ -1,9 +1,9 @@
 language: ruby
 rvm:
-- 2.5.3
+  - 2.5.3
 script:
-- bundle exec rspec
-- bundle exec rubocop -P
+  - bundle exec rspec
+  - bundle exec rubocop -P
 env:
   global:
     - CODECOV_TOKEN="55c76f18-4868-483e-a095-87a17e22b349"
