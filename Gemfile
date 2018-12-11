@@ -12,6 +12,8 @@ gem 'puma', '~> 3.11'
 # User Management and Authentication
 gem 'devise', '~> 4.5'
 gem 'jwt', '~> 2.1'
+# TravisCI Conf
+gem 'travis', '~> 1.8', '>= 1.8.9'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
