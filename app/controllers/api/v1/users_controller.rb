@@ -1,5 +1,5 @@
-class Api
-  class V1
+module Api
+  module V1
     class UsersController < ApplicationController
       def create
         user = UserService.new(JSON.parse(request.body.read)).call
