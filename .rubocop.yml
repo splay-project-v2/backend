@@ -40,6 +40,4 @@ Metrics/MethodLength:
     - spec/api/**/*
 
 Metrics/LineLength:
-  Exclude:
-    - spec/models/**/*
-    - spec/api/**/*
+  Max: 120 # Corresponds to default RubyMine ruler
