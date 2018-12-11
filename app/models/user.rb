@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
-  validates :login, length: { in: 3..20 }, presence: true
+  validates :login, length: { in: 3..20 }, presence: true, uniqueness: true
   validates :email, format: {
     with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   }
