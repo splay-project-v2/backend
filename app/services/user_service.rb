@@ -1,12 +1,12 @@
-class UserService
-  def initialize(params)
-    @email = params['data']['attributes']['email']
-    @login = params['data']['attributes']['login']
-    @password = params['data']['attributes']['password']
-    @password_confirmation = params['data']['attributes']['password_confirmation']
-  end
-
-  def create_user!
-    User.create!(email: @email, login: @login, password: @password, password_confirmation: @password_confirmation)
+module UserService
+  class << self
+    def create_user!(req)
+      User.create!(
+        email: req['data']['attributes']['email'],
+        login: req['data']['attributes']['login'],
+        password: req['data']['attributes']['password'],
+        password_confirmation: req['data']['attributes']['password_confirmation']
+      )
+    end
   end
 end
