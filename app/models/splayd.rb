@@ -1,6 +1,6 @@
 class Splayd < ApplicationRecord
   belongs_to :user
-  has_many :splayd_availabilities
+  has_many :splayd_availabilities, dependent: :nullify
 
   enum bits:       %w[64 32]
   enum endianness: %w[big little]
