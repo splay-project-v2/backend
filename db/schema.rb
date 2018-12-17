@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_143108) do
+ActiveRecord::Schema.define(version: 2018_12_17_132420) do
+
+  create_table "splayds", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "ip"
+    t.string "hostname"
+    t.string "session"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "country", limit: 2
+    t.string "city"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.string "version"
+    t.string "lua_version"
+    t.string "bits", limit: 0, default: "32"
+    t.string "endianness", limit: 0, default: "little"
+    t.string "os"
+    t.string "full_os"
+    t.integer "start_time", limit: 11
+    t.decimal "load_1", precision: 5, scale: 2, default: "999.99"
+    t.decimal "load_5", precision: 5, scale: 2, default: "999.99"
+    t.decimal "load_15", precision: 5, scale: 2, default: "999.99"
+    t.integer "max_number", limit: 11
+    t.integer "max_mem", limit: 11
+    t.integer "disk_max_size", limit: 11
+    t.integer "disk_max_files", limit: 11
+    t.integer "disk_max_file_descriptors", limit: 11
+    t.integer "network_max_send", limit: 14
+    t.integer "network_max_receive", limit: 14
+    t.integer "network_max_sockets", limit: 11
+    t.integer "network_max_ports", limit: 11
+    t.integer "network_send_speed", limit: 11
+    t.integer "network_receive_speed", limit: 11
+    t.string "command", limit: 0
+    t.string "status", limit: 0, default: "REGISTERED"
+    t.integer "last_contact_time", limit: 11
+    t.integer "user_id"
+    t.index ["ip"], name: "index_splayds_on_ip"
+    t.index ["key"], name: "index_splayds_on_key"
+    t.index ["user_id"], name: "index_splayds_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
