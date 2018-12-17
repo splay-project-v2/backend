@@ -3,6 +3,7 @@ AllCops:
     - bin/*
     - config/**/*
     - db/*
+    - db/migrate/*
     - vendor/bundle/**/*
     - test/test_helper.rb
     - spec/spec_helper.rb
@@ -19,3 +20,24 @@ AllCops:
     - cli_server.rb
 Rails:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/IndentHash:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/LineLength:
+  Max: 120 # Corresponds to default RubyMine ruler

@@ -6,6 +6,12 @@ The Splay Backend is the interface between the Splay *Controller* and
 the web application, offering RESTapi in order to control the whole
 application.
 
+## Made with love following good principles
+
+- [JSON API Specification](https://jsonapi.org/) for building our API
+- [RuboCop](https://github.com/rubocop-hq/rubocop) for code analyzer, sanitizer and formatter
+- [Rspec](http://rspec.info/) as our main testing framework
+
 
 ## Tasks
 

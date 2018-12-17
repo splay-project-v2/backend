@@ -31,3 +31,6 @@
 
 # Ignore Coverage Stats
 coverage
+
+# OSX
+**/.DS_Store
