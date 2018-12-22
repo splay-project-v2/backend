@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_073603) do
+ActiveRecord::Schema.define(version: 2018_12_22_074224) do
 
   create_table "job_mandatory_splayds", force: :cascade do |t|
     t.integer "job_id"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 2018_12_22_073603) do
     t.string "status", default: "AVAILABLE"
     t.integer "time", null: false
     t.index ["splayd_id"], name: "index_splayd_availabilities_on_splayd_id"
+  end
+
+  create_table "splayd_jobs", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "splayd_id"
+    t.string "status", limit: 0, default: "RESERVED"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_splayd_jobs_on_job_id"
+    t.index ["splayd_id"], name: "index_splayd_jobs_on_splayd_id"
   end
 
   create_table "splayds", force: :cascade do |t|
