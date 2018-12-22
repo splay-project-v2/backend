@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   belongs_to :user
+  has_many :job_mandatory_splayds, dependent: :nullify
 
   enum bits:       %w[64 32]
   enum endianness: %w[little big]
