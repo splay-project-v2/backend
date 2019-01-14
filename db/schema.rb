@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_060700) do
+ActiveRecord::Schema.define(version: 2019_01_14_065323) do
+
+  create_table "actions", force: :cascade do |t|
+    t.integer "splayd_id"
+    t.integer "job_id"
+    t.string "command"
+    t.text "data"
+    t.string "status", limit: 7, default: "WAITING"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_actions_on_job_id"
+    t.index ["splayd_id"], name: "index_actions_on_splayd_id"
+  end
+
+  create_table "blacklist_hosts", force: :cascade do |t|
+    t.string "host"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "job_mandatory_splayds", force: :cascade do |t|
     t.integer "job_id"
@@ -69,6 +88,22 @@ ActiveRecord::Schema.define(version: 2019_01_14_060700) do
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
+  create_table "local_logs", force: :cascade do |t|
+    t.integer "splayd_id"
+    t.integer "job_id"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_local_logs_on_job_id"
+    t.index ["splayd_id"], name: "index_local_logs_on_splayd_id"
+  end
+
+  create_table "locks", force: :cascade do |t|
+    t.integer "job_reservation", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "splayd_availabilities", force: :cascade do |t|
     t.integer "splayd_id"
     t.string "ip"
@@ -87,6 +122,22 @@ ActiveRecord::Schema.define(version: 2019_01_14_060700) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_splayd_jobs_on_job_id"
     t.index ["splayd_id"], name: "index_splayd_jobs_on_splayd_id"
+  end
+
+  create_table "splayd_selections", force: :cascade do |t|
+    t.integer "splayd_id"
+    t.integer "job_id"
+    t.string "selected", limit: 5, default: "FALSE"
+    t.integer "trace_number"
+    t.string "trace_status", limit: 7, default: "WAITING"
+    t.string "reset", limit: 5, default: "FALSE"
+    t.string "replied", limit: 5, default: "FALSE"
+    t.decimal "reply_time", precision: 8, scale: 5
+    t.integer "port", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_splayd_selections_on_job_id"
+    t.index ["splayd_id"], name: "index_splayd_selections_on_splayd_id"
   end
 
   create_table "splayds", force: :cascade do |t|
