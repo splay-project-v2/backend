@@ -1,0 +1,2 @@
+class BlacklistHost < ApplicationRecord
+end

@@ -17,9 +17,9 @@ RSpec.describe 'Session creation', type: :request do
   context 'with valid unsensitive credentials' do
     it 'should return a json web token' do
       post(
-          '/api/v1/sessions',
-          params: request_body('alicefoo', 'password'),
-          headers: request_headers
+        '/api/v1/sessions',
+        params: request_body('alicefoo', 'password'),
+        headers: request_headers
       )
       expect(response.status).to eq 200
     end
