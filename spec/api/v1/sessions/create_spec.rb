@@ -7,8 +7,19 @@ RSpec.describe 'Session creation', type: :request do
     it 'should return a json web token' do
       post(
         '/api/v1/sessions',
-        params: request_body('alice@gmail.com', 'password'),
+        params: request_body('AliceFoo', 'password'),
         headers: request_headers
+      )
+      expect(response.status).to eq 200
+    end
+  end
+
+  context 'with valid unsensitive credentials' do
+    it 'should return a json web token' do
+      post(
+          '/api/v1/sessions',
+          params: request_body('alicefoo', 'password'),
+          headers: request_headers
       )
       expect(response.status).to eq 200
     end
@@ -18,7 +29,7 @@ RSpec.describe 'Session creation', type: :request do
     it 'should return 401 unauthorized' do
       post(
         '/api/v1/sessions',
-        params: request_body('alice@gmail.com', 'foobar'),
+        params: request_body('AliceFoo', 'foobar'),
         headers: request_headers
       )
       expect(response.status).to eq 401
@@ -29,7 +40,7 @@ RSpec.describe 'Session creation', type: :request do
     it 'should return 401 unauthorized' do
       post(
         '/api/v1/sessions',
-        params: request_body('bob@gmail.com', 'foobar'),
+        params: request_body('RemyVoet', 'foobar'),
         headers: request_headers
       )
       expect(response.status).to eq 401
@@ -42,12 +53,12 @@ RSpec.describe 'Session creation', type: :request do
     JSON.parse(response.body)
   end
 
-  def request_body(email, password)
+  def request_body(login, password)
     {
         'data': {
             'type': 'session',
             'attributes': {
-                'email': email,
+                'login': login,
                 'password': password
             }
         }

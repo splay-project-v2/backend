@@ -3,7 +3,7 @@ module Api
     class UsersController < ApplicationController
       def create
         user = UserService.create_user!(JSON.parse(request.body.read))
-        render json: { 'token': generate_jwt(user.id, user.email) }
+        render json: { 'token': generate_jwt(user.id, user.login) }
       end
     end
   end
