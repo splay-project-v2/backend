@@ -1,8 +1,25 @@
 /logs:
   description: "Logging items belonging to Jobs"
+  /{jobId}:
+    get: "Get the log content related to the job id"
+
 /users:
   description: "Users, can submit Jobs and interact with Daemons"
+  get: "Get all users"
+  post: "Create a new user"
+  /{userId}:
+    put: "Updated selected user"
+    get: "Get selected user information"
+    delete: "Destroy the selected user"
+
 /jobs:
   description: "Available jobs in the Splay system"
+  get: "Returns list of user's job, all if admin"
+  put: "Creates a new job"
+  /{jobId}:
+    delete: "Destroy the selected job"
+    get: "Return job details (including code)"
+
 /splayds:
   description: "Splay Daemons, run Jobs"
+  get: "Return all registered Splayds"

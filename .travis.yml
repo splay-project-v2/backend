@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 2.5.3
+script:
+  - bundle exec rspec
+  - bundle exec rubocop -P
+env:
+  global:
+    - CODECOV_TOKEN="55c76f18-4868-483e-a095-87a17e22b349"
+  secure: sCGUTZVCXCcvsBk1357GBel5/yjLEabYFCxY0rVrGA5TlMmsUnuz+MHFuYPg6ffdI2iI17XfG2gIzh4Jm6G6IX4BICmGspfsclYoz+7E5M9J79MDaM43VHo164du9xTohvMl1SO113D2hooTSGvJR7L6w8D1968vNeYyaAfLWUvyFc66jjUCniDZHpSku03gEgasZDBiXRhfQyRsPxOq8dCxXLy51mTJ9hYFbcEMc4qgL6BiiubTlJlWPDMLoX/uWBZ8DybN/BxpSWbFr0wwYiIoM/TvQo2idS3hAxOPRJkboPSDp2j2MmBL5G5jGtm4P2NJGbFiVaxwJOZNQRS4Z60AAJVbnT8lYkR7kIZNEcPtKTMFfWvpl2L1njqgLDeWuzkAKfZ7Up6I7ChSiJ3U15nZKntHifg77stMpBGe36v+bIYv3fJi0Ckhhlg5+a9L6xveT+6+iXIzn5RarQXW03tyDf2DmzUphfdtr4gxOH7TC2axc/AFw+/Wazrt8+Cq15olIWHqpaiQuV4XnC34qublGnHvofre6Asr8Q5wkPcuDv8LTdNDKcAUpMqqiZTqohQEKUFZIhyltWrqBh2no/0capHqdEmVXmyJPR5DYJcY396FJhDlVZDLVK8omP+9lI5Q03wzqvSfS0NqMLqOSRmHBRjiw0pFLpi00Cd3gTE=

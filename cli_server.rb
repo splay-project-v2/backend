@@ -123,7 +123,7 @@ class GetLog < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class GetJobCode < WEBrick::HTTPServlet::AbstractServlet
-  # TODO : Jobs management route (SHOW)
+  # TODO : Jobs management route (SHOW) -- MERGED WITH JOB DETAILS
   def do_POST(request, response)
     req = JSON.parse(request.body)
     status, content_type, body = get_job_code(
@@ -335,6 +335,8 @@ class SubmitJob < WEBrick::HTTPServlet::AbstractServlet
 end
 
 class GetJobDetails < WEBrick::HTTPServlet::AbstractServlet
+
+  # TODO : Jobs management route (SHOW) MERGED WITH JOB CODE
 
   def do_POST(request, response)
     req = JSON.parse(request.body)

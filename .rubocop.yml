@@ -1,0 +1,42 @@
+AllCops:
+  Exclude:
+    - bin/*
+    - config/**/*
+    - db/*
+    - db/migrate/*
+    - vendor/bundle/**/*
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - app/mailers/application_mailer.rb
+    - app/models/application_record.rb
+    - app/jobs/application_job.rb
+    #- app/controllers/application_controller.rb
+    - app/channels/application_cable/connection.rb
+    - app/channels/application_cable/channel.rb
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - cli_server.rb
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/IndentHash:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - spec/api/**/*
+
+Metrics/LineLength:
+  Max: 120 # Corresponds to default RubyMine ruler
