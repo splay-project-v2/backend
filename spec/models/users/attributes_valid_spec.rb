@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user) { User.new(email: 'foo@bar.com', password: 'anicepassword09', login: 'TheFooBar') }
+  let!(:user) { User.new(email: 'foo@bar.com', password: 'anicepassword09', username: 'TheFooBar') }
 
   context 'Creation of a valid user' do
     it 'is valid' do

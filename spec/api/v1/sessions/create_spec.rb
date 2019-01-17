@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Session creation', type: :request do
-  let!(:user) { User.create(email: 'alice@gmail.com', login: 'AliceFoo', password: 'password') }
+  let!(:user) { User.create(email: 'alice@gmail.com', username: 'AliceFoo', password: 'password') }
 
   context 'with valid credentials' do
     it 'should return a json web token' do
@@ -53,12 +53,12 @@ RSpec.describe 'Session creation', type: :request do
     JSON.parse(response.body)
   end
 
-  def request_body(login, password)
+  def request_body(username, password)
     {
         'data': {
             'type': 'session',
             'attributes': {
-                'login': login,
+                'username': username,
                 'password': password
             }
         }

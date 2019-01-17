@@ -8,12 +8,12 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid with absence of password' do
-      user = User.new(email: 'foo@bar.com', login: 'TheFooBar')
+      user = User.new(email: 'foo@bar.com', username: 'TheFooBar')
       expect(user).not_to be_valid
     end
 
     it 'is not valid with absence of email' do
-      user = User.new(password: 'foobarbaz', login: 'TheFooBar')
+      user = User.new(password: 'foobarbaz', username: 'TheFooBar')
       expect(user).not_to be_valid
     end
 

@@ -3,7 +3,7 @@ module UserService
     def create_user!(req)
       User.create!(
         email: req['data']['attributes']['email'],
-        login: req['data']['attributes']['login'],
+        username: req['data']['attributes']['username'],
         password: req['data']['attributes']['password'],
         password_confirmation: req['data']['attributes']['password_confirmation']
       )

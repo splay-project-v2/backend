@@ -195,11 +195,11 @@ ActiveRecord::Schema.define(version: 2019_01_14_065323) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "login"
+    t.string "username"
     t.integer "admin", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["login"], name: "index_users_on_login", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

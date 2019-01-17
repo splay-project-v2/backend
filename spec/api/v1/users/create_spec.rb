@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User registration', type: :request do
-  let!(:user) { User.create(email: 'bob@gmail.com', login: 'BobFoo', password: 'password') }
+  let!(:user) { User.create(email: 'bob@gmail.com', username: 'BobFoo', password: 'password') }
   context 'with valid credentials' do
     it 'should return a JWT' do
       post(
@@ -50,7 +50,7 @@ RSpec.describe 'User registration', type: :request do
     end
   end
 
-  context 'with already existing user login' do
+  context 'with already existing user username' do
     it 'should return a 422 unprocessable entity' do
       post(
         '/api/v1/users',
@@ -68,13 +68,13 @@ RSpec.describe 'User registration', type: :request do
     JSON.parse(response.body)
   end
 
-  def request_body(email, login, password, password_conf)
+  def request_body(email, username, password, password_conf)
     {
       'data': {
           'type': 'user',
           'attributes': {
               'email': email,
-              'login': login,
+              'username': username,
               'password': password,
               'password_confirmation': password_conf
           }
