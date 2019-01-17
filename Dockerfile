@@ -1,20 +1,18 @@
-FROM ruby:2.5.3-slim
-LABEL Description="Splay - Web Server - Receive HTTP commands to interact with DB (send msg to controller througt DB)"
+FROM ruby:2.5.3-alpine
 
-RUN mkdir -p /usr/splay
-RUN mkdir -p /usr/splay/logs
+RUN apk update && apk add build-base nodejs sqlite-dev tzdata
 
-WORKDIR /usr/splay
+RUN mkdir /app
+WORKDIR /app
 
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-    build-essential rubygems less mysql-client default-libmysqlclient-dev libssl-dev openssl
+RUN gem install bundler
 
-RUN gem install json -v 2.1.0
-RUN gem install openssl mysql2 sequel
+COPY ./Gemfile* ./
+RUN bundle install
 
-# The context is the parent directory
-ADD backend/*.rb ./
-ADD controller/lib ./lib
-ADD backend/deploy_cli_server.sh ./
+COPY . .
 
-CMD ["./deploy_cli_server.sh"]
+RUN rake db:create
+RUN bin/rails db:migrate RAILS_ENV=development
+
+CMD puma -C config/puma.rb
