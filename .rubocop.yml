@@ -2,20 +2,8 @@ AllCops:
   Exclude:
     - bin/*
     - config/**/*
-    - db/*
-    - db/migrate/*
+    - db/**/*
     - vendor/bundle/**/*
-    - spec/spec_helper.rb
-    - spec/rails_helper.rb
-    - app/mailers/application_mailer.rb
-    - app/models/application_record.rb
-    - app/jobs/application_job.rb
-    #- app/controllers/application_controller.rb
-    - app/channels/application_cable/connection.rb
-    - app/channels/application_cable/channel.rb
-    - Gemfile
-    - Rakefile
-    - config.ru
     - cli_server.rb
 Rails:
   Enabled: true
@@ -25,10 +13,6 @@ Style/FrozenStringLiteralComment:
 
 Style/Documentation:
   Enabled: false
-
-Layout/IndentHash:
-  Exclude:
-    - spec/api/**/*
 
 Metrics/BlockLength:
   Exclude:

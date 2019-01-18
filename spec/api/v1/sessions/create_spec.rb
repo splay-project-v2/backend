@@ -55,13 +55,13 @@ RSpec.describe 'Session creation', type: :request do
 
   def request_body(username, password)
     {
-        'data': {
-            'type': 'session',
-            'attributes': {
-                'username': username,
-                'password': password
-            }
+      'data': {
+        'type': 'session',
+        'attributes': {
+          'username': username,
+          'password': password
         }
+      }
     }.to_json
   end
 end

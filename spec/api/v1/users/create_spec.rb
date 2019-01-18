@@ -71,13 +71,13 @@ RSpec.describe 'User registration', type: :request do
   def request_body(email, username, password, password_conf)
     {
       'data': {
-          'type': 'user',
-          'attributes': {
-              'email': email,
-              'username': username,
-              'password': password,
-              'password_confirmation': password_conf
-          }
+        'type': 'user',
+        'attributes': {
+          'email': email,
+          'username': username,
+          'password': password,
+          'password_confirmation': password_conf
+        }
       }
     }.to_json
   end
