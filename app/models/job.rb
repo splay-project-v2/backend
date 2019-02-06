@@ -4,14 +4,6 @@ class Job < ApplicationRecord
   has_many :splayd_jobs, dependent: :nullify
   before_create :format_code
 
-  enum bits:       %w[64 32]
-  enum endianness: %w[little big]
-  enum die_free:   %w[TRUE FALSE], _prefix: :die_free
-  enum keep_files: %w[TRUE FALSE], _prefix: :keep_files
-  enum scheduler:  %w[standard trace]
-  enum list_type:  %w[HEAD RANDOM]
-  enum status:     %w[LOCAL REGISTERING RUNNING NO_RESSOURCES REGISTER_TIMEOUT KILLED]
-
   validates :ref, presence: true
   validates :user_id, presence: true
   validates :bits, presence: true, inclusion: %w[64 32]

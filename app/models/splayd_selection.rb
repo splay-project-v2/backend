@@ -2,11 +2,6 @@ class SplaydSelection < ApplicationRecord
   belongs_to :splayd
   belongs_to :job
 
-  enum selected: %w[TRUE FALSE], _prefix: :selected
-  enum trace_status: %w[RUNNING WAITING]
-  enum reset: %w[TRUE FALSE], _prefix: :reset
-  enum replied: %w[TRUE FALSE], _prefix: :replied
-
   validates :splayd_id, presence: true
   validates :job_id, presence: true
   validates :port, presence: true
