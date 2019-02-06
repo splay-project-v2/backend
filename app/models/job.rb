@@ -2,11 +2,12 @@ class Job < ApplicationRecord
   belongs_to :user
   has_many :job_mandatory_splayds, dependent: :nullify
   has_many :splayd_jobs, dependent: :nullify
+  before_create :format_code
 
   enum bits:       %w[64 32]
   enum endianness: %w[little big]
-  enum die_free:   %w[TRUE FALSE]
-  enum keep_files: %w[TRUE FALSE]
+  enum die_free:   %w[TRUE FALSE], _prefix: :die_free
+  enum keep_files: %w[TRUE FALSE], _prefix: :keep_files
   enum scheduler:  %w[standard trace]
   enum list_type:  %w[HEAD RANDOM]
   enum status:     %w[LOCAL REGISTERING RUNNING NO_RESSOURCES REGISTER_TIMEOUT KILLED]
@@ -27,7 +28,7 @@ class Job < ApplicationRecord
   validates :network_receive_speed, presence: true
   validates :udp_drop_ratio, presence: true
   validates :code, presence: true
-  validates :script, presence: true
+  validates :script, presence: true, allow_blank: true
   validates :nb_splayds, presence: true
   validates :factor, presence: true
   validates :max_load, presence: true
@@ -38,4 +39,18 @@ class Job < ApplicationRecord
   validates :list_type, inclusion: %w[HEAD RANDOM]
   validates :list_size, presence: true
   validates :status, inclusion: %w[LOCAL REGISTERING RUNNING NO_RESSOURCES REGISTER_TIMEOUT KILLED]
+
+  attribute :ref, default: Digest::MD5.hexdigest(rand(1_000_000).to_s)
+  attribute :bits, default: '32'
+  attribute :endianness, default: 'little'
+  attribute :die_free, default: 'TRUE'
+  attribute :keep_files, default: 'FALSE'
+  attribute :scheduler, default: 'standard'
+  attribute :list_type, default: 'HEAD'
+  attribute :status, default: 'LOCAL'
+  attribute :script, default: ''
+
+  def format_code
+    self.code = code.to_s.gsub(/\\/, '\\\\\\').gsub(/'/, "\\\\'").gsub(/"/, '\\"')
+  end
 end
