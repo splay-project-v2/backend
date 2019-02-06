@@ -13,5 +13,9 @@ RSpec.describe Splayd, type: :model do
     it 'is valid' do
       expect(splayd).to be_valid
     end
+
+    it 'successfully completes' do
+      assert splayd.save
+    end
   end
 end

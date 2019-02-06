@@ -49,6 +49,7 @@ class Job < ApplicationRecord
   attribute :list_type, default: 'HEAD'
   attribute :status, default: 'LOCAL'
   attribute :script, default: ''
+  attribute :status_time, default: Time.now.to_i
 
   def format_code
     self.code = code.to_s.gsub(/\\/, '\\\\\\').gsub(/'/, "\\\\'").gsub(/"/, '\\"')

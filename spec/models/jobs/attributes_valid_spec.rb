@@ -13,5 +13,9 @@ RSpec.describe Job, type: :model do
     it 'is valid' do
       expect(job).to be_valid
     end
+
+    it 'successfully completes' do
+      assert job.save
+    end
   end
 end

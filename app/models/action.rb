@@ -7,4 +7,6 @@ class Action < ApplicationRecord
   validates :splayd_id, presence: true
   validates :job_id, presence: true
   validates :status, inclusion: %w[TEMP WAITING SENDING FAILURE]
+
+  attribute :status, default: 'WAITING'
 end
