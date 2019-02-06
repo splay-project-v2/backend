@@ -11,5 +11,9 @@ RSpec.describe User, type: :model do
     it 'generates a non-admin user' do
       expect(user.admin).to be(0)
     end
+
+    it 'successfully completes' do
+      assert user.save
+    end
   end
 end
