@@ -7,4 +7,6 @@ class SplaydJob < ApplicationRecord
   validates :job_id, presence: true
   validates :splayd_id, presence: true
   validates :status, inclusion: %w[RESERVED WAITING RUNNING]
+
+  attribute :status, default: 'RESERVED'
 end
