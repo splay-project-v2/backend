@@ -64,10 +64,6 @@ RSpec.describe 'User registration', type: :request do
 
   private
 
-  def response_body
-    JSON.parse(response.body)
-  end
-
   def request_body(email, username, password, password_conf)
     {
       'data': {
