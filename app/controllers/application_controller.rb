@@ -9,6 +9,10 @@ class ApplicationController < ActionController::API
     JWT.encode({ 'id': id, 'username': username }, Rails.application.credentials.jwt_secret, 'HS256')
   end
 
+  def authenticate_token
+    AuthenticationService.authenticate_token!(request)
+  end
+
   private
 
   def render_error(status, msg = nil)
