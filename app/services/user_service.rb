@@ -1,11 +1,12 @@
 module UserService
   class << self
     def create_user!(req)
+      attr = req['data']['attributes']
       User.create!(
-        email: req['data']['attributes']['email'],
-        username: req['data']['attributes']['username'],
-        password: req['data']['attributes']['password'],
-        password_confirmation: req['data']['attributes']['password_confirmation']
+        email: attr['email'],
+        username: attr['username'],
+        password: attr['password'],
+        password_confirmation: attr['password_confirmation']
       )
     end
   end

@@ -9,6 +9,14 @@ module Api
         }
       end
 
+      def create
+        user = authenticate_token
+        job = JobService.create_job!(user.id, JSON.parse(request.body.read))
+        render json: {
+          job: job
+        }
+      end
+
       def show
         job = Job.find(params[:id])
         render json: {
