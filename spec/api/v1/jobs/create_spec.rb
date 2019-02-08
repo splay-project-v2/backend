@@ -13,6 +13,7 @@ RSpec.describe 'Jobs creation', type: :request do
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post '/api/v1/jobs', params: minimal_request_body(file_fixture('cyclon.lua').read), headers: headers
       expect(response.status).to eq 200
+      expect(response_body).to include('job')
     end
   end
 
@@ -30,7 +31,7 @@ RSpec.describe 'Jobs creation', type: :request do
   end
 
   context 'request job with too many splayds with valid token' do
-    it 'does somethings' do
+    it 'resize to max available splayds' do
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post(
@@ -39,6 +40,7 @@ RSpec.describe 'Jobs creation', type: :request do
         headers: headers
       )
       expect(response.status).to eq 200
+      expect(response_body['job']['nb_splayds']).to eq(Splayd.count)
     end
   end
 
