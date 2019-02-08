@@ -2,15 +2,7 @@ class Job < ApplicationRecord
   belongs_to :user
   has_many :job_mandatory_splayds, dependent: :nullify
   has_many :splayd_jobs, dependent: :nullify
-  before_create :format_code
-
-  enum bits:       %w[64 32]
-  enum endianness: %w[little big]
-  enum die_free:   %w[TRUE FALSE], _prefix: :die_free
-  enum keep_files: %w[TRUE FALSE], _prefix: :keep_files
-  enum scheduler:  %w[standard trace]
-  enum list_type:  %w[HEAD RANDOM]
-  enum status:     %w[LOCAL REGISTERING RUNNING NO_RESSOURCES REGISTER_TIMEOUT KILLED]
+  before_create :format_code, :check_splayds
 
   validates :ref, presence: true
   validates :user_id, presence: true
@@ -53,5 +45,9 @@ class Job < ApplicationRecord
 
   def format_code
     self.code = code.to_s.gsub(/\\/, '\\\\\\').gsub(/'/, "\\\\'").gsub(/"/, '\\"')
+  end
+
+  def check_splayds
+    self.nb_splayds = Splayd.count if nb_splayds > Splayd.count
   end
 end
