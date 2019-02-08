@@ -3,14 +3,21 @@ require 'rails_helper'
 RSpec.describe 'User registration', type: :request do
   let!(:user) { User.create(email: 'bob@gmail.com', username: 'BobFoo', password: 'password') }
   context 'with valid credentials' do
-    it 'should return a JWT' do
+    before(:each) do
       post(
         '/api/v1/users',
         params: request_body('alice@gmail.com', 'alice', 'password', 'password'),
         headers: request_headers
       )
+    end
+    it 'should succeed' do
       expect(response.status).to eq 200
+    end
+    it 'should return a JWT' do
       expect(response_body).to include('token')
+    end
+    it 'should create a new user in DB' do
+      expect(User.count).to eq(2)
     end
   end
 
