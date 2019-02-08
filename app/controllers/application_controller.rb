@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_token
-    AuthenticationService.authenticate_token!(request)
+    @current_user = AuthenticationService.authenticate_token!(request)
   end
 
   private
