@@ -51,6 +51,13 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string  :status,                    default: "LOCAL"
       t.integer :status_time,               limit: 4, null: false
       t.text    :status_msg
+
+      # > v1.0.7 controller ----
+      t.datetime :scheduled_at
+      t.string :strict, :default => "FALSE"
+      t.string :topology
+      t.integer :queue_timeout
+      # ----
     end
 
     add_index :jobs, :ref

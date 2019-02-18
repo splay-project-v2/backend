@@ -21,6 +21,8 @@ class CreateSplayds < ActiveRecord::Migration[5.2]
       t.string  :full_os
       t.integer :start_time,                :limit => 8
 
+      t.string :architecture
+
       t.decimal :load_1,                    :precision => 5, :scale => 2, :default => 999.99
       t.decimal :load_5,                    :precision => 5, :scale => 2, :default => 999.99
       t.decimal :load_15,                   :precision => 5, :scale => 2, :default => 999.99
