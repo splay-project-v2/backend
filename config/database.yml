@@ -11,7 +11,14 @@ default: &default
 
 development:
   <<: *default
-  database: db/development.mysql
+  database: splay
+  username: <%= ENV.fetch("MYSQL_USERNAME") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
+  host: splay_db
+  port: 3306
+  encoding: utf8
+  secure_auth: false
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

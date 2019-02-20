@@ -55,7 +55,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       # > v1.0.7 controller ----
       t.datetime :scheduled_at
       t.string :strict, :default => "FALSE"
-      t.string :topology
+      t.text :topology
       t.integer :queue_timeout
       # ----
     end

@@ -4,7 +4,7 @@ RUN apk update && apk add build-base mariadb-dev nodejs tzdata
 
 ENV MYSQL_PASSWORD splay
 ENV MYSQL_USERNAME splay
-ENV RAILS_ENV production
+ENV RAILS_ENV development
 
 RUN mkdir /app
 WORKDIR /app
