@@ -1,6 +1,8 @@
 FROM ruby:2.5.3-alpine
 
-RUN apk update && apk add build-base mariadb-dev nodejs tzdata
+RUN apk update && apk upgrade && \
+    apk add --no-cache build-base mariadb-dev nodejs tzdata gmp-dev \
+    libxml2-dev libxslt-dev 
 
 ENV MYSQL_PASSWORD splay
 ENV MYSQL_USERNAME splay
