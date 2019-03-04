@@ -6,14 +6,14 @@
 #
 default: &default
   adapter: mysql2
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV["RAILS_MAX_THREADS"] { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
   database: splay
-  username: <%= ENV.fetch("MYSQL_USERNAME") %>
-  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
+  username: <%= ENV["MYSQL_USERNAME"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
   host: splay_db
   port: 3306
   encoding: utf8
@@ -31,8 +31,8 @@ test:
 production:
   <<: *default
   database: splay
-  username: <%= ENV.fetch("MYSQL_USERNAME") %>
-  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
+  username: <%= ENV["MYSQL_USERNAME"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
   host: splay_db
   port: 3306
   encoding: utf8
