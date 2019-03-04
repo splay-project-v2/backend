@@ -27,7 +27,7 @@ class Job < ApplicationRecord
   validates :min_uptime, presence: true
   validates :die_free, inclusion: %w[TRUE FALSE]
   validates :keep_files, inclusion: %w[TRUE FALSE]
-  validates :scheduler, inclusion: %w[standard trace]
+  validates :scheduler, inclusion: %w[standard trace tracealt]
   validates :list_type, inclusion: %w[HEAD RANDOM]
   validates :list_size, presence: true
   validates :status, inclusion: %w[LOCAL REGISTERING RUNNING NO_RESSOURCES REGISTER_TIMEOUT KILLED]

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User registration', type: :request do
   let!(:user) { User.create(email: 'bob@gmail.com', username: 'BobFoo', password: 'password') }
+  let!(:user_count) { User.count }
   context 'with valid credentials' do
     before(:each) do
       post(
@@ -17,7 +18,7 @@ RSpec.describe 'User registration', type: :request do
       expect(response_body).to include('token')
     end
     it 'should create a new user in DB' do
-      expect(User.count).to eq(2)
+      expect(User.count).to be > user_count
     end
   end
 

@@ -7,7 +7,6 @@ class CreateActions < ActiveRecord::Migration[5.2]
       t.text :data
       t.string :status, limit: 7, default: "WAITING"
       t.integer :position
-      t.timestamps
     end
   end
 end
