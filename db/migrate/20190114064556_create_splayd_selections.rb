@@ -9,8 +9,7 @@ class CreateSplaydSelections < ActiveRecord::Migration[5.2]
       t.string :reset, limit: 5, default: "FALSE"
       t.string :replied, limit: 5, default: "FALSE"
       t.decimal :reply_time, precision: 8, scale: 5
-      t.integer :port, null: false
-      t.timestamps
+      t.integer :port, null: false, default: 0
     end
 
   end

@@ -4,7 +4,6 @@ class CreateSplaydJobs < ActiveRecord::Migration[5.2]
       t.belongs_to :job
       t.belongs_to :splayd
       t.string  "status",  default: "RESERVED"
-      t.timestamps
     end
   end
 end

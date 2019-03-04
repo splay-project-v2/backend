@@ -4,7 +4,6 @@ class CreateLocalLogs < ActiveRecord::Migration[5.2]
       t.belongs_to :splayd
       t.belongs_to :job
       t.text :data
-      t.timestamps
     end
   end
 end
