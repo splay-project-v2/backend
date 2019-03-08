@@ -10,137 +10,132 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_065323) do
+ActiveRecord::Schema.define(version: 2019_02_17_065214) do
 
-  create_table "actions", force: :cascade do |t|
-    t.integer "splayd_id"
-    t.integer "job_id"
+  create_table "actions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "splayd_id"
+    t.bigint "job_id"
     t.string "command"
     t.text "data"
     t.string "status", limit: 7, default: "WAITING"
     t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_actions_on_job_id"
     t.index ["splayd_id"], name: "index_actions_on_splayd_id"
   end
 
-  create_table "blacklist_hosts", force: :cascade do |t|
+  create_table "blacklist_hosts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "host"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-  create_table "job_mandatory_splayds", force: :cascade do |t|
-    t.integer "job_id"
-    t.integer "splayd_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "job_designated_splayds", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "splayd_id"
+    t.index ["job_id"], name: "index_job_designated_splayds_on_job_id"
+    t.index ["splayd_id"], name: "index_job_designated_splayds_on_splayd_id"
+  end
+
+  create_table "job_mandatory_splayds", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "splayd_id"
     t.index ["job_id"], name: "index_job_mandatory_splayds_on_job_id"
     t.index ["splayd_id"], name: "index_job_mandatory_splayds_on_splayd_id"
   end
 
-  create_table "jobs", force: :cascade do |t|
+  create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "ref"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "description"
     t.string "localization", limit: 2
-    t.integer "distance", limit: 11
+    t.integer "distance"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
-    t.string "bits", limit: 0, default: "32", null: false
-    t.string "endianness", limit: 0, default: "little", null: false
-    t.integer "max_mem", limit: 11, default: 2097152, null: false
-    t.integer "disk_max_size", limit: 11, default: 67108864, null: false
-    t.integer "disk_max_files", limit: 11, default: 512, null: false
-    t.integer "disk_max_file_descriptors", limit: 11, default: 32, null: false
-    t.integer "network_max_send", limit: 14, default: 134217728, null: false
-    t.integer "network_max_receive", limit: 14, default: 134217728, null: false
-    t.integer "network_max_sockets", limit: 11, default: 32, null: false
-    t.integer "network_nb_ports", limit: 11, default: 1, null: false
-    t.integer "network_send_speed", limit: 11, default: 51200, null: false
-    t.integer "network_receive_speed", limit: 11, default: 51200, null: false
+    t.string "bits", default: "32", null: false
+    t.string "endianness", default: "little", null: false
+    t.integer "max_mem", default: 2097152, null: false
+    t.integer "disk_max_size", default: 67108864, null: false
+    t.integer "disk_max_files", default: 512, null: false
+    t.integer "disk_max_file_descriptors", default: 32, null: false
+    t.bigint "network_max_send", default: 134217728, null: false
+    t.bigint "network_max_receive", default: 134217728, null: false
+    t.integer "network_max_sockets", default: 32, null: false
+    t.integer "network_nb_ports", default: 1, null: false
+    t.integer "network_send_speed", default: 51200, null: false
+    t.integer "network_receive_speed", default: 51200, null: false
     t.decimal "udp_drop_ratio", precision: 3, scale: 2, default: "0.0", null: false
     t.text "code", null: false
     t.text "script", null: false
-    t.integer "nb_splayds", limit: 11, default: 1, null: false
+    t.integer "nb_splayds", default: 1, null: false
     t.decimal "factor", precision: 3, scale: 2, default: "1.25", null: false
     t.string "splayd_version"
     t.decimal "max_load", precision: 5, scale: 2, default: "999.99", null: false
-    t.integer "min_uptime", limit: 11, default: 0, null: false
+    t.integer "min_uptime", default: 0, null: false
     t.string "hostmasks"
-    t.integer "max_time", limit: 11, default: 10000
-    t.string "die_free", limit: 0, default: "TRUE"
-    t.string "keep_files", limit: 0, default: "FALSE"
-    t.string "scheduler", limit: 0, default: "standard"
+    t.integer "max_time", default: 10000
+    t.string "die_free", default: "TRUE"
+    t.string "keep_files", default: "FALSE"
+    t.string "scheduler", default: "standard"
     t.text "scheduler_description"
-    t.string "list_type", limit: 0, default: "HEAD"
-    t.integer "list_size", limit: 11, default: 0, null: false
+    t.string "list_type", default: "HEAD"
+    t.integer "list_size", default: 0, null: false
     t.string "command"
     t.text "command_msg"
-    t.string "status", limit: 0, default: "LOCAL"
-    t.integer "status_time", limit: 11, null: false
+    t.string "status", default: "LOCAL"
+    t.integer "status_time", null: false
     t.text "status_msg"
+    t.datetime "scheduled_at"
+    t.string "strict", default: "FALSE"
+    t.text "topology"
+    t.integer "queue_timeout"
     t.index ["ref"], name: "index_jobs_on_ref"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
-  create_table "local_logs", force: :cascade do |t|
-    t.integer "splayd_id"
-    t.integer "job_id"
+  create_table "local_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "splayd_id"
+    t.bigint "job_id"
     t.text "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_local_logs_on_job_id"
     t.index ["splayd_id"], name: "index_local_logs_on_splayd_id"
   end
 
-  create_table "locks", force: :cascade do |t|
+  create_table "locks", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "job_reservation", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-  create_table "splayd_availabilities", force: :cascade do |t|
-    t.integer "splayd_id"
+  create_table "splayd_availabilities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "splayd_id"
     t.string "ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "status", default: "AVAILABLE"
     t.integer "time", null: false
     t.index ["splayd_id"], name: "index_splayd_availabilities_on_splayd_id"
   end
 
-  create_table "splayd_jobs", force: :cascade do |t|
-    t.integer "job_id"
-    t.integer "splayd_id"
-    t.string "status", limit: 0, default: "RESERVED"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "splayd_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "splayd_id"
+    t.string "status", default: "RESERVED"
     t.index ["job_id"], name: "index_splayd_jobs_on_job_id"
     t.index ["splayd_id"], name: "index_splayd_jobs_on_splayd_id"
   end
 
-  create_table "splayd_selections", force: :cascade do |t|
-    t.integer "splayd_id"
-    t.integer "job_id"
+  create_table "splayd_selections", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "splayd_id"
+    t.bigint "job_id"
     t.string "selected", limit: 5, default: "FALSE"
     t.integer "trace_number"
     t.string "trace_status", limit: 7, default: "WAITING"
     t.string "reset", limit: 5, default: "FALSE"
     t.string "replied", limit: 5, default: "FALSE"
     t.decimal "reply_time", precision: 8, scale: 5
-    t.integer "port", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "port", default: 0, null: false
     t.index ["job_id"], name: "index_splayd_selections_on_job_id"
     t.index ["splayd_id"], name: "index_splayd_selections_on_splayd_id"
   end
 
-  create_table "splayds", force: :cascade do |t|
+  create_table "splayds", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "key", null: false
     t.string "ip"
     t.string "hostname"
@@ -148,41 +143,42 @@ ActiveRecord::Schema.define(version: 2019_01_14_065323) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "country", limit: 2
+    t.string "country"
     t.string "city"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
     t.string "version"
     t.string "lua_version"
-    t.string "bits", limit: 0, default: "32"
-    t.string "endianness", limit: 0, default: "little"
+    t.string "bits", default: "32"
+    t.string "endianness", default: "little"
     t.string "os"
     t.string "full_os"
-    t.integer "start_time", limit: 11
+    t.bigint "start_time"
+    t.string "architecture"
     t.decimal "load_1", precision: 5, scale: 2, default: "999.99"
     t.decimal "load_5", precision: 5, scale: 2, default: "999.99"
     t.decimal "load_15", precision: 5, scale: 2, default: "999.99"
-    t.integer "max_number", limit: 11
-    t.integer "max_mem", limit: 11
-    t.integer "disk_max_size", limit: 11
-    t.integer "disk_max_files", limit: 11
-    t.integer "disk_max_file_descriptors", limit: 11
-    t.integer "network_max_send", limit: 14
-    t.integer "network_max_receive", limit: 14
-    t.integer "network_max_sockets", limit: 11
-    t.integer "network_max_ports", limit: 11
-    t.integer "network_send_speed", limit: 11
-    t.integer "network_receive_speed", limit: 11
-    t.string "command", limit: 0
-    t.string "status", limit: 0, default: "REGISTERED"
-    t.integer "last_contact_time", limit: 11
-    t.integer "user_id"
+    t.integer "max_number"
+    t.integer "max_mem"
+    t.integer "disk_max_size"
+    t.integer "disk_max_files"
+    t.integer "disk_max_file_descriptors"
+    t.bigint "network_max_send"
+    t.bigint "network_max_receive"
+    t.integer "network_max_sockets"
+    t.integer "network_max_ports"
+    t.integer "network_send_speed"
+    t.integer "network_receive_speed"
+    t.string "command"
+    t.string "status", default: "REGISTERED"
+    t.integer "last_contact_time"
+    t.bigint "user_id"
     t.index ["ip"], name: "index_splayds_on_ip"
     t.index ["key"], name: "index_splayds_on_key"
     t.index ["user_id"], name: "index_splayds_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
