@@ -25,7 +25,7 @@ module Api
 
       def destroy
         job = Job.find(params[:id])
-        job.destroy!
+        job.update('command': 'KILL')
         render json: ''
       end
     end

@@ -17,8 +17,8 @@ RSpec.describe 'Jobs deletion', type: :request do
       expect(response.status).to eq 200
     end
 
-    it 'deletes the selected job' do
-      expect(Job.find_by(id: job.id)).to be_nil
+    it 'set kill to the selected job' do
+      expect(Job.find_by(id: job.id).command).to eq 'KILL'
     end
   end
 
