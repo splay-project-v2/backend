@@ -20,7 +20,7 @@ module AuthenticationService
 
     # Authorization
     def admin?(user)
-      raise Unauthorized, 'Unsufficient permission' if user.admin == 0
+      raise Unauthorized, 'Unsufficient permission' if user.admin.zero?
     end
 
     private
