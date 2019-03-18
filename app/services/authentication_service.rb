@@ -1,5 +1,6 @@
 module AuthenticationService
   class << self
+    # Authentication
     def authenticate!(req)
       user = User.find_for_authentication(username: req['data']['attributes']['username'])
       raise Unauthorized, 'Bad credentials' if user.nil? || !user.valid_password?(req['data']['attributes']['password'])
@@ -15,6 +16,11 @@ module AuthenticationService
       User.find_by!(id: decoded_token[0]['id'], username: decoded_token[0]['username'])
     rescue JWT::DecodeError, ActiveRecord::RecordNotFound
       raise Unauthorized, 'Bad credentials'
+    end
+
+    # Authorization
+    def admin?(user)
+      raise Unauthorized, 'Unsufficient permission' if user.admin == 0
     end
 
     private

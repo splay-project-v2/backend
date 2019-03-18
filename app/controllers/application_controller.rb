@@ -14,6 +14,10 @@ class ApplicationController < ActionController::API
     @current_user = AuthenticationService.authenticate_token!(request)
   end
 
+  def admin?
+    AuthenticationService.admin?(@current_user)
+  end
+
   private
 
   def render_error(status, msg = nil)

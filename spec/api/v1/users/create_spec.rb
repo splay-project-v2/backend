@@ -20,6 +20,9 @@ RSpec.describe 'User registration', type: :request do
     it 'should create a new user in DB' do
       expect(User.count).to be > user_count
     end
+    it 'should create a non-admin user' do
+      expect(user.admin).to eq 0
+    end
   end
 
   context 'with bad passwords' do
