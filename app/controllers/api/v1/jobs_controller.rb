@@ -19,7 +19,7 @@ module Api
       def show
         job = Job.find(params[:id])
         render json: {
-          job: job
+          job: job.as_json.merge(host_list: job.hosts)
         }
       end
 

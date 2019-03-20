@@ -50,4 +50,13 @@ class Job < ApplicationRecord
   def check_splayds
     self.nb_splayds = Splayd.count if nb_splayds > Splayd.count
   end
+
+  def hosts
+    spd_sel = SplaydSelection.where(job_id: id, selected: 'TRUE')
+    splayds = []
+    spd_sel.each do |sel|
+      splayds.push(Splayd.find(sel.splayd_id).as_json.merge(port: sel.port))
+    end
+    splayds
+  end
 end
