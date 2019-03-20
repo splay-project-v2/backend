@@ -14,7 +14,8 @@ class ApplicationController < ActionController::API
     @current_user = AuthenticationService.authenticate_token!(request)
   end
 
-  def admin?
+  def authenticate_admin
+    @current_user = AuthenticationService.authenticate_token!(request)
     AuthenticationService.admin?(@current_user)
   end
 

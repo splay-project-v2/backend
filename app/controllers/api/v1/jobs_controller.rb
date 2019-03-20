@@ -1,7 +1,7 @@
 module Api
   module V1
     class JobsController < ApplicationController
-      before_action :authenticate_token, only: %i[index show destroy create]
+      before_action :authenticate_token, only: [:index, :show, :destroy, :create]
 
       def index
         render json: {

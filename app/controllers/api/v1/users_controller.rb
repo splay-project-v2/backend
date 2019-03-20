@@ -1,12 +1,15 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :authenticate_token, only: %i[destroy]
-      before_action :admin?, only: %i[destroy]
+      before_action :authenticate_admin, only: [:index, :destroy]
 
       def create
         user = UserService.create_user!(JSON.parse(request.body.read))
         render json: { 'token': generate_jwt(user.id, user.username) }
+      end
+
+      def index
+        render json: { users: User.all }
       end
 
       def destroy
