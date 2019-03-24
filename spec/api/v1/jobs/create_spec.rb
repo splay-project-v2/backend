@@ -74,7 +74,7 @@ RSpec.describe 'Jobs creation', type: :request do
   def minimal_request_body(code)
     {
       'data': {
-        'type': 'user',
+        'type': 'job',
         'attributes': {
           'code': code
         }
@@ -85,7 +85,7 @@ RSpec.describe 'Jobs creation', type: :request do
   def maximal_request_body(code, nb_splayds, name, description)
     {
       'data': {
-        'type': 'user',
+        'type': 'job',
         'attributes': {
           name: name,
           description: description,
