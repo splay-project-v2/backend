@@ -1,5 +1,5 @@
 FROM ruby:2.5.3-alpine
-HEALTHCHECK --interval=30s --timeout=30s --retries=5 \
+HEALTHCHECK --interval=30s --timeout=30s --retries=20 \
   CMD curl --silent --fail localhost:3000 || exit 1
 
 RUN apk update && apk upgrade && \
