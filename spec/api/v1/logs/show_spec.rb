@@ -21,9 +21,9 @@ RSpec.describe 'Logs show', type: :request do
 
   context 'request valid job logs with a valid token' do
     it 'returns target job infos' do
-      dir = File.dirname('/usr/splay/logs')
+      dir = File.dirname(Rails.root.join('log', 'splay', job.ref))
       FileUtils.mkdir_p(dir) unless File.directory?(dir)
-      File.open("/usr/splay/logs/#{job.ref}", 'wb') do |file|
+      File.open(Rails.root.join('log', 'splay', job.ref), 'wb') do |file|
         file << 'My content'
         file << 'More content'
       end
