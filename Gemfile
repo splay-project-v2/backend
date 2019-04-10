@@ -12,7 +12,7 @@ gem 'mysql2', '~> 0.5.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # User Management and Authentication
-gem 'devise', '~> 4.5'
+gem 'devise', '>= 4.6.0'
 gem 'jwt', '~> 2.1'
 # TravisCI Conf
 gem 'travis', '~> 1.8', '>= 1.8.9'
