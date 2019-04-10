@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
       resources :splayds, only: [:index]
       resources :jobs, only: [:index, :show, :destroy, :create]
+      resources :logs, only: [:show]
     end
   end
 end
