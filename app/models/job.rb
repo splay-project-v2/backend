@@ -2,7 +2,7 @@ class Job < ApplicationRecord
   belongs_to :user
   has_many :job_mandatory_splayds, dependent: :nullify
   has_many :splayd_jobs, dependent: :nullify
-  before_create :format_code, :check_splayds
+  before_create :check_splayds
 
   validates :ref, presence: true
   validates :user_id, presence: true
@@ -42,10 +42,6 @@ class Job < ApplicationRecord
   attribute :status, default: 'LOCAL'
   attribute :script, default: ''
   attribute :status_time, default: Time.now.to_i
-
-  def format_code
-    self.code = code.to_s.gsub(/\\/, '\\\\\\').gsub(/'/, "\\\\'").gsub(/"/, '\\"')
-  end
 
   def check_splayds
     self.nb_splayds = Splayd.count if nb_splayds > Splayd.count
