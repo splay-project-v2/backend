@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe 'Jobs creation', type: :request do
   let!(:secret) { Rails.application.credentials.jwt_secret }
   let!(:user) { User.create(email: 'alice@foobar.com', password: 'anicepassword09', username: 'Alice') }
-  let!(:splayd1) { Splayd.create(user_id: user.id, key: 'key') }
-  let!(:splayd2) { Splayd.create(user_id: user.id, key: 'key') }
   let!(:jwt) { JWT.encode({ 'id': user.id, 'username': user.username }, secret, 'HS256') }
 
   context 'request minimal valid job with a valid token' do
     it 'completes and returns target job infos' do
+      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post '/api/v1/jobs', params: minimal_request_body(file_fixture('cyclon.lua').read), headers: headers
@@ -19,6 +19,8 @@ RSpec.describe 'Jobs creation', type: :request do
 
   context 'request maximal valid job with a valid token' do
     it 'completes and returns target job infos' do
+      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post(
@@ -32,6 +34,8 @@ RSpec.describe 'Jobs creation', type: :request do
 
   context 'request job with too many splayds with valid token' do
     it 'resize to max available splayds' do
+      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post(
@@ -41,6 +45,19 @@ RSpec.describe 'Jobs creation', type: :request do
       )
       expect(response.status).to eq 200
       expect(response_body['job']['nb_splayds']).to eq(Splayd.count)
+    end
+  end
+
+  context 'request job with 0 splayd available' do
+    it 'returns a 422 unprocessable entity error' do
+      headers = request_headers
+      headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
+      post(
+        '/api/v1/jobs',
+        params: maximal_request_body(file_fixture('cyclon.lua').read, 1, 'Cyclon', 'Best algo'),
+        headers: headers
+      )
+      expect(response.status).to eq 422
     end
   end
 

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Jobs deletion', type: :request do
   let!(:secret) { Rails.application.credentials.jwt_secret }
   let!(:user) { User.create(email: 'alice@foobar.com', password: 'anicepassword09', username: 'Alice') }
+  let!(:splayd1) { Splayd.create(user_id: user.id, key: 'key') }
   let!(:job) { Job.create(user_id: user.id, code: file_fixture('cyclon.lua').read) }
   let!(:jwt) { JWT.encode({ 'id': user.id, 'username': user.username }, secret, 'HS256') }
 
