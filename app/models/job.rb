@@ -4,6 +4,7 @@ class Job < ApplicationRecord
   has_many :splayd_jobs, dependent: :nullify
   before_create :format_code, :check_splayds
 
+  validates_with JobValidator
   validates :ref, presence: true
   validates :user_id, presence: true
   validates :bits, presence: true, inclusion: %w[64 32]
