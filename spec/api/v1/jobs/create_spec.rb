@@ -7,8 +7,8 @@ RSpec.describe 'Jobs creation', type: :request do
 
   context 'request minimal valid job with a valid token' do
     it 'completes and returns target job infos' do
-      Splayd.create(user_id: user.id, key: 'key')
-      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post '/api/v1/jobs', params: minimal_request_body(file_fixture('cyclon.lua').read), headers: headers
@@ -19,8 +19,8 @@ RSpec.describe 'Jobs creation', type: :request do
 
   context 'request maximal valid job with a valid token' do
     it 'completes and returns target job infos' do
-      Splayd.create(user_id: user.id, key: 'key')
-      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post(
@@ -34,8 +34,8 @@ RSpec.describe 'Jobs creation', type: :request do
 
   context 'request job with too many splayds with valid token' do
     it 'resize to max available splayds' do
-      Splayd.create(user_id: user.id, key: 'key')
-      Splayd.create(user_id: user.id, key: 'key')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
+      Splayd.create(user_id: user.id, key: 'key', status: 'AVAILABLE')
       headers = request_headers
       headers[:HTTP_AUTHORIZATION] = "Bearer #{jwt}"
       post(
@@ -43,8 +43,7 @@ RSpec.describe 'Jobs creation', type: :request do
         params: maximal_request_body(file_fixture('cyclon.lua').read, 10, 'Cyclon', 'Best algo'),
         headers: headers
       )
-      expect(response.status).to eq 200
-      expect(response_body['job']['nb_splayds']).to eq(Splayd.count)
+      expect(response.status).to eq 422
     end
   end
 

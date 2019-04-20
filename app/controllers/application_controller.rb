@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from(ActiveRecord::RecordInvalid) { |e| render_error(:unprocessable_entity, e.to_s) }
   rescue_from(ActiveRecord::RecordNotFound) { |e| render_error(:not_found, e.to_s) }
   rescue_from(AuthenticationService::Unauthorized) { |e| render_error(:unauthorized, e.to_s) }
+  rescue_from(JobService::BadRequest) { |e| render_error(:unprocessable_entity, e.to_s) }
   rescue_from(JSON::ParserError) { render_error(:bad_request) }
 
   def generate_jwt(id, username)
