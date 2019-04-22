@@ -6,7 +6,6 @@ class CreateSplayds < ActiveRecord::Migration[5.2]
       t.string  :hostname
       t.string  :session
       t.string  :name
-      t.timestamps
 
       t.string  :country                   
       t.string  :city

@@ -141,8 +141,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_065214) do
     t.string "hostname"
     t.string "session"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "country"
     t.string "city"
     t.decimal "latitude", precision: 10, scale: 6
