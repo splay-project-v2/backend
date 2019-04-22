@@ -12,7 +12,7 @@ module JobService
     private
 
     def validate_splayds(req)
-      asked_splayds = req['data']['attributes']['nb_splayds'] || 1
+      asked_splayds = req['data']['attributes']['nb_splayds'].to_i || 1
       raise BadRequest, 'Not enough Splayds available' if asked_splayds > Splayd.where(status: 'AVAILABLE').count
     end
   end
