@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-alpine
+FROM ruby:2.5.5-alpine
 HEALTHCHECK --interval=30s --timeout=30s --retries=20 \
   CMD curl --silent --fail localhost:3000 || exit 1
 
