@@ -17,14 +17,14 @@ application.
 
 These are the tasks performed and to be performed on Backend
 
-- [ ] DB definition and versioning belongs to Backend
+- [x] DB definition and versioning belongs to Backend
 - [x] Transform Backend in a small Rails API app
 - [x] Immediately setup Rubocop and Rspec
 - [x] CircleCI or TravisCI integration
-- [ ] Recreate DB Schema using migrations
-- [ ] Tests on models
+- [x] Recreate DB Schema using migrations
+- [x] Tests on models
 - [ ] API entries for the listed routes in `api.raml`
-- [ ] JSON API is tested
+- [x] JSON API is tested
 
 ## README
 
@@ -50,3 +50,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## How to 
+
+If you launch this component with docker, don't forget to choose a environment variable call MASTER_KEY used to generate secure json web token.
